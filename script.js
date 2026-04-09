@@ -72,7 +72,7 @@ function initStickyCTAHelper() {
 
 // Product Gallery Configuration
 const GALLERY_IMAGE_COUNT = 7; // <-- Cambia este número a la cantidad de fotos que pongas en images/galeria/
-const BODY_IMAGE_COUNT = 5; // <-- Cambia este número a la cantidad de fotos que pongas en images/cuerpo/
+const BODY_IMAGE_COUNT = 6; // <-- Cambia este número a la cantidad de fotos que pongas en images/cuerpo/
 
 // Customer Reviews Configuration
 const CUSTOMER_REVIEWS = [
@@ -308,9 +308,9 @@ function initBodyImages() {
 function initReviews() {
     const reviewsContainer = document.getElementById('reviews-container');
     if (!reviewsContainer) return;
-    
+
     reviewsContainer.innerHTML = '';
-    
+
     CUSTOMER_REVIEWS.forEach((review, index) => {
         const cardHtml = `
             <div class="review-card">
