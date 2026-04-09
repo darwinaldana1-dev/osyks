@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogger Nomad - OZYKZ | Compra Contra Entrega</title>
+    <meta name="description" content="Descubre el Jogger Nomad, máxima comodidad y estilo. Envío gratis y pago contra entrega en toda Colombia. Arma tu combo ahora.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="./images/logo.png" alt="OZYKZ Logo" class="brand-logo">
+            </div>
+            <nav class="main-nav">
+                <a href="#inicio">Inicio</a>
+                <a href="#producto">Catálogo</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Promobar / Persistent Timer -->
+    <div class="promo-bar">
+        <span>🔥 OFERTA EXCLUSIVA TERMINA EN: <strong id="countdown-timer">00:00:00</strong> 🔥</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <!-- Background Video -->
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="./images/hero.mp4" type="video/mp4">
+            <!-- Agrega más sources si tienes otros formatos como WebM -->
+        </video>
+        
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <span class="hero-badge">Nuevo Lanzamiento</span>
+            <h2 class="hero-title">Domina tu camino con el <strong>Jogger Nomad</strong></h2>
+            <p class="hero-subtitle">Diseñado para la vida en movimiento. Comodidad absoluta, estilo inigualable.</p>
+        </div>
+    </section>
+
+    <!-- Product / Checkout Section -->
+    <section class="product-section" id="producto">
+        <div class="container product-container">
+            
+            <!-- Gallery Simulation -->
+            <div class="product-gallery">
+                <div class="main-image-container">
+                    <img src="./images/galeria/1.jpg" alt="Jogger Nomad Principal" class="main-image" id="main-product-img" onerror="this.src='https://via.placeholder.com/600x800.png?text=Jogger+Nomad+Frontal';">
+                </div>
+                <div class="thumbnails">
+                    <!-- Configurado via JS basado en GALLERY_IMAGE_COUNT -->
+                </div>
+            </div>
+
+            <!-- Product details and combos -->
+            <div class="product-details">
+                <div class="product-header">
+                    <h2 class="product-title">Jogger Nomad</h2>
+                    <div class="reviews">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews-count">4.9 (128 reseñas)</span>
+                    </div>
+                    <p class="product-description">Un jogger versátil y premium. Tela suave, elástica y resistente. Ideal para un look urbano o para relajarse en casa.</p>
+                </div>
+
+                <!-- Combos Selector -->
+                <div class="combos-wrapper" id="combos-container">
+                    <h3 class="selector-title">Elige tu Promoción:</h3>
+                    <div id="landing-combos-grid" style="display: flex; flex-direction: column; gap: 10px;">
+                        <!-- Generated via JS based on combosData -->
+                    </div>
+                </div>
+
+
+
+                <div class="action-wrapper">
+                    <button id="btn-open-modal" class="btn btn-primary btn-large btn-checkout">
+                        ARMA TU PEDIDO Y PAGAS AL RECIBIR
+                    </button>
+                    <p class="shipping-note"><i>* Envío gratis y pago contra entrega en toda Colombia.</i></p>
+                </div>
+
+                <div class="safe-checkout">
+                    <span>🔒 Compra 100% Segura. Pagas cuando recibes.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Body Images Section -->
+    <section class="body-images-section">
+        <div class="body-images-container">
+            <!-- Las imágenes se generan automáticamente vía JavaScript (BODY_IMAGE_COUNT) -->
+        </div>
+    </section>
+
+    <!-- Reviews / Social Proof Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <h2 class="reviews-title">Lo que dicen nuestros clientes</h2>
+            <div class="reviews-carousel" id="reviews-container">
+                <!-- Se inyecta vía JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Mobile CTA -->
+    <div class="sticky-cta-mobile">
+        <button id="btn-sticky-modal" class="btn btn-primary btn-full">
+            ARMA TU PEDIDO
+            <br>
+            <small>Pagas al recibir</small>
+        </button>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/573222875833?text=Hola,%20tengo%20una%20duda%20sobre%20el%20Jogger%20Nomad" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <div class="wa-text">¿Dudas? Contáctanos</div>
+        <div class="wa-icon-wrapper">
+            <span class="wa-badge">1</span>
+            <svg viewBox="0 0 32 32" class="whatsapp-ico" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.002 0c-8.837 0-16.002 7.165-16.002 16.002 0 2.825 0.738 5.568 2.143 7.994l-2.143 7.843 8.026-2.106c2.378 1.282 5.048 1.956 7.788 1.956h0.006c8.835 0 16.002-7.165 16.002-16.002s-7.167-16-16.020-16.002zM16.002 29.070h-0.004c-2.385 0-4.721-0.64-6.764-1.851l-0.485-0.287-5.031 1.321 1.343-4.908-0.315-0.501c-1.328-2.115-2.029-4.568-2.029-7.098 0-7.391 6.015-13.407 13.407-13.407s13.407 6.015 13.407 13.407c0 7.392-6.015 13.407-13.407 13.407zM23.364 19.043c-0.404-0.203-2.386-1.176-2.756-1.311s-0.64-0.203-0.909 0.203c-0.269 0.405-1.042 1.311-1.277 1.58s-0.472 0.304-0.875 0.101c-0.404-0.203-1.703-0.627-3.242-2.008-1.199-1.076-2.008-2.404-2.243-2.809s-0.025-0.623 0.177-0.825c0.181-0.181 0.404-0.472 0.606-0.708 0.203-0.236 0.269-0.404 0.404-0.674s0.067-0.506-0.034-0.708c-0.101-0.203-0.909-2.193-1.246-3.002-0.327-0.787-0.66-0.68-0.909-0.693-0.235-0.012-0.504-0.012-0.774-0.012s-0.706 0.101-1.076 0.506c-0.37 0.404-1.413 1.383-1.413 3.372s1.447 3.912 1.649 4.182c0.203 0.269 2.85 4.348 6.901 6.098 0.963 0.417 1.714 0.665 2.299 0.852 0.968 0.307 1.848 0.263 2.544 0.159 0.776-0.116 2.386-0.975 2.723-1.916 0.337-0.941 0.337-1.745 0.236-1.916s-0.37-0.271-0.774-0.473z"/>
+            </svg>
+        </div>
+    </a>
+
+    <!-- Checkout Modal Backdrop and Content -->
+    <div class="modal-backdrop" id="checkout-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="btn-close-modal">&times;</button>
+            
+            <div class="modal-header">
+                <h3>Finaliza tu Pedido</h3>
+                <p>Estás a un paso de estrenar tu Jogger Nomad. Llena el formulario y <strong>paga al recibir</strong>.</p>
+            </div>
+
+            <div class="modal-body">
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-img">
+                        <img src="./images/galeria/1.jpg" alt="Nomad Jogger" onerror="this.src='https://via.placeholder.com/100x100.png?text=Jogger';">
+                    </div>
+                    <div class="summary-details">
+                        <h4 id="summary-combo-name">1 Unidad</h4>
+                        <div id="summary-sizes-text" class="summary-sizes">Talla: M</div>
+                        <div class="summary-price-wrapper">
+                            <span class="price-label">Total:</span>
+                            <span class="summary-price" id="summary-price-value">$69.900</span>
+                        </div>
+                        <div class="free-shipping-tag">🚚 Envío Gratis Incluido</div>
+                    </div>
+                </div>
+
+                <!-- Modal Combos Selector -->
+                <div class="combos-wrapper modal-combos-wrapper" style="margin-bottom: 15px;">
+                    <h3 class="selector-title" style="font-size:0.95rem;">Modificar Promoción:</h3>
+                    <div class="combos-grid" id="modal-combos-grid">
+                        <!-- Generated via JS based on combosData -->
+                    </div>
+                </div>
+
+                <!-- Sizes and Colors Selector -->
+                <div class="sizes-wrapper" id="sizes-container" style="margin-bottom: 20px;">
+                    <!-- Generated via JS based on selected combo -->
+                </div>
+
+                <!-- Checkout Form -->
+                <form id="checkout-form" class="checkout-form">
+                    <div class="form-group">
+                        <label for="fname">Nombre *</label>
+                        <input type="text" id="fname" name="fname" placeholder="Tu Nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lname">Apellidos *</label>
+                        <input type="text" id="lname" name="lname" placeholder="Tus Apellidos" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Celular *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Ej: 3001234567" pattern="[0-9]{10}" title="Debe contener exactamente 10 dígitos" required>
+                        <span class="form-error" id="phone-error" style="transition: color 0.3s;">El número es inválido. Ingresa exactamente 10 dígitos.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Departamento *</label>
+                        <select id="department" name="department" required>
+                            <option value="">Selecciona tu departamento</option>
+                            <!-- Populated via JS -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Ciudad *</label>
+                        <select id="city" name="city" required disabled>
+                            <option value="">Selecciona tu ciudad</option>
+                            <!-- Populated via JS -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Dirección de Entrega *</label>
+                        <input type="text" id="address" name="address" placeholder="Ej: Calle 45 # 12-34" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="neighborhood">Barrio *</label>
+                        <input type="text" id="neighborhood" name="neighborhood" placeholder="Nombre de tu barrio" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apto">Casa / Apto / Detalles</label>
+                        <input type="text" id="apto" name="apto" placeholder="Apto 301, Casa amarilla...">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit-order">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="wa-submit-icon"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        CONFIRMAR PEDIDO EN WHATSAPP
+                    </button>
+                    <p class="form-disclaimer">Al confirmar, serás redirigido a WhatsApp para finalizar la validación de tu pedido y poder despacharlo hoy mismo.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
