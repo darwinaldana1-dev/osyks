@@ -971,8 +971,29 @@ select:focus {
         font-size: 2.2rem;
     }
     
+    .product-gallery {
+        margin-left: -20px;
+        margin-right: -20px;
+        width: 100vw;
+        max-width: none;
+    }
+    
     .main-image-container {
-        max-height: 400px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        aspect-ratio: auto; /* Permite que la foto mande en sus dimensiones reales */
+        max-height: none;
+    }
+
+    .main-image {
+        height: auto; /* Respeta la proporción natural de la imagen */
+        object-fit: contain; 
+    }
+
+    .thumbnails {
+        padding-left: 20px;
+        padding-right: 20px;
     }
     
     /* Show sticky mobile CTA */
