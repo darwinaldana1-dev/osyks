@@ -1,9 +1,8 @@
-// Product Combos Configuration
 const combosData = {
-    1: { name: '1 Unidad', price: 69900, qty: 1 },
-    2: { name: 'Combo x2', price: 89900, qty: 2 },
-    3: { name: 'Combo x3', price: 109900, qty: 3 },
-    4: { name: 'Combo x4', price: 129900, qty: 4 }
+    1: { name: '1 Unidad Pantalón Saira', price: 59900, qty: 1 },
+    2: { name: 'Combo x2 Pantalones Saira', price: 89900, qty: 2, tag: '⭐ MÁS VENDIDO', tagClass: 'tag-orange' },
+    3: { name: 'Combo x3 Pantalones Saira', price: 109900, qty: 3, tag: '💎 MEJOR AHORRO', tagClass: 'tag-green' },
+    4: { name: 'Combo x4 Pantalones Saira', price: 129900, qty: 4, tag: '🏆 MEGA OFERTA', tagClass: 'tag-black' }
 };
 
 let activeComboId = 1;
@@ -39,6 +38,7 @@ const formatPrice = (price) => {
 // Initialize UI
 function init() {
     initGallery();
+    initAnglesGallery();
     initCombos();
     initLocations();
     initTimer();
@@ -71,32 +71,34 @@ function initStickyCTAHelper() {
 }
 
 // Product Gallery Configuration
-const GALLERY_IMAGE_COUNT = 7; // <-- Cambia este número a la cantidad de fotos que pongas en images/galeria/
-const BODY_IMAGE_COUNT = 6; // <-- Cambia este número a la cantidad de fotos que pongas en images/cuerpo/
+const GALLERY_IMAGE_COUNT = 10; // <-- Cambia este número a la cantidad de fotos que pongas en images/galeria/
+const BODY_IMAGE_COUNT = 10; // <-- Cambia este número a la cantidad de fotos que pongas en images/cuerpo/
 
 // Customer Reviews Configuration
 const CUSTOMER_REVIEWS = [
     {
-        name: "Carlos M.",
-        text: "¡La tela es increíble y el tallaje es perfecto! Lo uso para el gimnasio y para salir, súper recomendados.",
+        name: "María C.",
+        text: "¡La tela es increíble y me horman perfecto! Los uso para mi rutina diaria y para salir, súper cómodos y recomendados.",
         photo: "1.jpg"
     },
     {
-        name: "Andrés F.",
-        text: "Compré el combo de 3 y me llegaron rapidísimo. La calidad es un 10/10.",
+        name: "Andrea F.",
+        text: "Compré el combo de 3 y me llegaron rapidísimo. Me siento muy segura y cómoda con ellos, la calidad es un 10/10.",
         photo: "2.jpg"
     },
     {
-        name: "Juan P.",
-        text: "Me dio mucha confianza pagar al recibir. Definitivamente volveré a comprar.",
+        name: "Paola P.",
+        text: "Me dio mucha confianza pagar al recibir. Son mis pantalones favoritos ahora para estar en casa o salir. Definitivamente volveré a comprar.",
         photo: "3.jpg"
     }
 ];
 
 // Render and Initialize Gallery
 function initGallery() {
-    const galleryContainer = document.querySelector('.thumbnails');
-    const mainImgContainer = document.querySelector('.main-image-container');
+    const galleryContainer = document.querySelector('#producto .thumbnails');
+    const mainImgContainer = document.querySelector('#producto .main-image-container');
+
+    if (!galleryContainer || !mainImgContainer) return;
 
     // Auto-generate thumbnails and carousel HTML
     galleryContainer.innerHTML = '';
@@ -106,22 +108,22 @@ function initGallery() {
         const activeClass = i === 1 ? 'active-thumb' : '';
 
         // Add to main carousel
-        const mainHtml = `<img src="./images/galeria/${i}.jpg" alt="Jogger Nomad ${i}" class="main-image" data-main-index="${i}" onerror="this.src='https://via.placeholder.com/600x800.png?text=Galeria+${i}';">`;
+        const mainHtml = `<img src="./images/galeria/${i}.jpg" alt="Pantalón Saira ${i}" class="main-image" data-main-index="${i}" onerror="this.src='https://via.placeholder.com/600x800.png?text=Galeria+${i}';">`;
         mainImgContainer.insertAdjacentHTML('beforeend', mainHtml);
 
         // Add to thumbnail strip
-        const thumbHtml = `<img src="./images/galeria/${i}.jpg" alt="Jogger Nomad Thumbnail ${i}" class="thumb ${activeClass}" data-index="${i}" onerror="this.src='https://via.placeholder.com/150x150.png?text=Thumb+${i}';">`;
+        const thumbHtml = `<img src="./images/galeria/${i}.jpg" alt="Pantalón Saira Thumbnail ${i}" class="thumb ${activeClass}" data-index="${i}" onerror="this.src='https://via.placeholder.com/150x150.png?text=Thumb+${i}';">`;
         galleryContainer.insertAdjacentHTML('beforeend', thumbHtml);
     }
 
     let currentIndex = 1;
-    const thumbs = document.querySelectorAll('.thumb');
+    const thumbs = galleryContainer.querySelectorAll('.thumb');
 
     // When thumbnail is clicked, native scroll the main carousel to that image
     thumbs.forEach(thumb => {
         thumb.addEventListener('click', function () {
             const newIndex = parseInt(this.getAttribute('data-index'));
-            const targetMainImg = document.querySelector(`.main-image[data-main-index="${newIndex}"]`);
+            const targetMainImg = mainImgContainer.querySelector(`.main-image[data-main-index="${newIndex}"]`);
             if (targetMainImg) {
                 targetMainImg.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }
@@ -136,13 +138,28 @@ function initGallery() {
             currentIndex = scrollIndex;
             // Update active thumb classes dynamically
             thumbs.forEach(t => t.classList.remove('active-thumb'));
-            const activeThumb = document.querySelector(`.thumb[data-index="${currentIndex}"]`);
+            const activeThumb = galleryContainer.querySelector(`.thumb[data-index="${currentIndex}"]`);
             if (activeThumb) {
                 activeThumb.classList.add('active-thumb');
                 activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }
         }
     });
+}
+
+function initAnglesGallery() {
+    const mainContainer = document.getElementById('angles-main-container');
+    if (!mainContainer) return;
+
+    let currentIndex = 0;
+    const totalAngles = 3;
+
+    // Auto-scroll every 2 seconds using scrollLeft (does NOT move the page, only inside the container)
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalAngles;
+        const slideWidth = mainContainer.clientWidth;
+        mainContainer.scrollTo({ left: currentIndex * slideWidth, behavior: 'smooth' });
+    }, 3000);
 }
 
 // Render Combo Cards dynamically
@@ -169,8 +186,8 @@ function renderAllCombos() {
         if (discount > 0) {
             priceHtml = `
                 <div class="combo-price-wrapper">
-                    <span class="old-price">${oldPriceFmt}</span>
                     <span class="combo-price">${priceFmt}</span>
+                    <span class="old-price">${oldPriceFmt}</span>
                 </div>
             `;
         } else {
@@ -190,24 +207,31 @@ function renderAllCombos() {
         }
 
         const activeClass = (parseInt(id) === activeComboId) ? 'active' : '';
+        const tagHtml = combo.tag ? `<div class="combo-floating-badge ${combo.tagClass}">${combo.tag}</div>` : '';
 
         const cardHtmlLanding = `
             <div class="combo-card ${activeClass}" data-combo-id="${id}">
-                <div class="combo-info">
-                    <span class="combo-name">${combo.name}</span>
+                ${tagHtml}
+                <div class="combo-card-content">
+                    <div class="combo-left">
+                        <span class="combo-name">${combo.name}</span>
+                        ${badgeHtml}
+                    </div>
                     ${priceHtml}
                 </div>
-                ${badgeHtml}
             </div>
         `;
 
         const cardHtmlModal = `
             <div class="combo-card ${activeClass}" data-combo-id="${id}">
-                <div class="combo-info">
-                    <span class="combo-name">${combo.name}</span>
+                ${tagHtml}
+                <div class="combo-card-content">
+                    <div class="combo-left">
+                        <span class="combo-name">${combo.name}</span>
+                        ${badgeHtmlSmall}
+                    </div>
                     ${priceHtml}
                 </div>
-                ${badgeHtmlSmall}
             </div>
         `;
 
@@ -260,7 +284,7 @@ function renderSizeSelectors(comboId) {
     sizesContainer.innerHTML = '<h3 class="selector-title">Selecciona Talla y Color:</h3>';
 
     for (let i = 1; i <= combo.qty; i++) {
-        const itemLabel = combo.qty === 1 ? 'Jogger' : `Jogger ${i}`;
+        const itemLabel = combo.qty === 1 ? 'Pantalón' : `Pantalón ${i}`;
         const html = `
             <div class="size-select-group">
                 <label>Características para ${itemLabel}</label>
@@ -298,8 +322,8 @@ function initBodyImages() {
     if (!bodyContainer) return;
 
     bodyContainer.innerHTML = '';
-    for (let i = 1; i <= BODY_IMAGE_COUNT; i++) {
-        const imgHtml = `<img src="./images/cuerpo/${i}.jpg" alt="Información Nomad ${i}" class="body-img" onerror="this.src='https://via.placeholder.com/800x800.png?text=Cuerpo+${i}';">`;
+    for (let i = 2; i <= BODY_IMAGE_COUNT; i++) {
+        const imgHtml = `<img src="./images/cuerpo/${i}.jpg" alt="Información Pantalón Saira ${i}" class="body-img" onerror="this.src='https://via.placeholder.com/800x800.png?text=Cuerpo+${i}';">`;
         bodyContainer.insertAdjacentHTML('beforeend', imgHtml);
     }
 }
@@ -484,7 +508,7 @@ phoneInput.addEventListener('blur', function () {
     }
 });
 
-form.addEventListener('submit', function (e) {
+form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     // Validate phone specifically
@@ -500,6 +524,7 @@ form.addEventListener('submit', function (e) {
     const fname = formData.get('fname').trim();
     const lname = formData.get('lname').trim();
     const phone = formData.get('phone');
+    const email = formData.get('email') ? formData.get('email').trim() : 'Sin email';
     const address = formData.get('address').trim();
     const neighborhood = formData.get('neighborhood').trim();
     const apto = formData.get('apto').trim();
@@ -520,7 +545,52 @@ form.addEventListener('submit', function (e) {
 
     const aptoStr = apto ? ` (${apto})` : '';
 
-    // Build WhatsApp Message
+    // 1. CONSTRUIR EL PAYLOAD PARA MAKE / GOOGLE SHEETS (Plantilla Effi)
+    const orderData = {
+        nombre: fname,
+        apellidos: lname,
+        celular: phone,
+        email: email,
+        departamento: dept,
+        ciudad: city,
+        direccion: address,
+        barrio: neighborhood,
+        detalles_direccion: apto,
+        producto: combo.name,
+        total_pagar: combo.price,
+        especificaciones: sizesTextLines.join(' | ') // Ej: Pantalón 1: Talla M - Color Negro | Pantalón 2...
+    };
+
+    // 2. ENVIAR DATOS A MAKE EN SEGUNDO PLANO
+    const submitBtn = form.querySelector('.btn-submit-order');
+    const originalBtnText = submitBtn.innerHTML;
+
+    try {
+        // Cambiamos el texto del botón temporalmente
+        submitBtn.innerHTML = 'PROCESANDO...';
+        submitBtn.disabled = true;
+
+        // IMPORTANTE: Aquí pegarás la URL que te genere Make
+        const webhookUrl = 'https://hook.eu1.make.com/l2t8u4wieyia7hhvkuidosrx6zzomun1';
+
+        // Enviamos la petición
+        await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData)
+        });
+
+    } catch (error) {
+        console.error('Error enviando datos a la base de datos:', error);
+        // Si hay error en la red, no detenemos el proceso, igual lo mandamos a WhatsApp
+    } finally {
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+    }
+
+    // 3. CONSTRUIR MENSAJE Y REDIRIGIR A WHATSAPP
     let message = `Hola, quiero hacer un pedido contra entrega:\n\n`;
     message += `*PEDIDO:*\n`;
     message += `- ${combo.name} (${formatPrice(combo.price)})\n`;
@@ -536,12 +606,12 @@ form.addEventListener('submit', function (e) {
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/573222875833?text=${encodedMessage}`;
 
-    // Redirect
+    // Abrir WhatsApp
     window.open(whatsappUrl, '_blank');
 
-    // Optional: close modal or clear form (user experience decision)
-    // closeModal();
-    // form.reset();
+    // Opcional: Cerrar el modal después de procesar
+    closeModal();
+    // form.reset(); // Descomenta esta línea si quieres que el formulario se borre al enviar
 });
 
 // Run Init
